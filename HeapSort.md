@@ -98,6 +98,55 @@ Het eerste wat binnen de functie gebeurt is het initialiseren van enkele variabl
 
 Ziezo, het moelijkste binnen deze functie zit er op. Wat ons nu rest is controleren of de childeren knopen groter zijn dan hun parent, en deze van plaats wisselen als dit het geval is. Het enig wat nog rest is om de functie recursief aan te roepen, wat wil zeggen dat we de functie zichzelf aanroept binnen de code van de functie. Dit doen we om ervoor te zorgen dat alle elementen binnen de sub tree, het gedeelde onder de gewijzigde vertakking, ook nog steeds correct gesorteerd blijft.
 
-### 2.2
+Dit recursief aanroepen demonstreert trouwens heel mooi het nut van functies, zonder  de functie zouden we de code van heapify oneindig in zich zelf moeten plakken. 
 
+### 2.2 Sort
 
+Een tweede functie is de `public static void Sort()`. Deze code zorgt voor het effectieve sorteren van de array, dus het op de juiste plaats plaatsten van de elementen eenmaal de max heap gebouwd is. Code ziet er als volgt uit:
+
+```C#
+public static void Sort(int[] arr)
+    {
+        int n = arr.Length;
+
+        // Build max heap.  This is a crucial step in heap sort.
+        // We start from the last non-leaf node and heapify all preceding nodes.
+        for (int i = n / 2 - 1; i >= 0; i--)
+            Heapify(arr, n, i);
+
+        // One by one extract an element from the heap, and then
+        //  re-heapify the remaining elements.
+        for (int i = n - 1; i > 0; i--)
+        {
+            // Swap the root (maximum element) with the last element.
+            int temp = arr[0];
+            arr[0] = arr[i];
+            arr[i] = temp;
+
+            // Reduce the heap size by 1 and heapify the root (index 0)
+            //  to maintain the max heap property.
+            Heapify(arr, i, 0);
+        }
+    }
+```
+
+Zoals je kan zien verwachte deze code een parameter, de niet gesorteerde input array. Hiervan zal hij meteen de lengte gelijk stellen aan n, omdat we in het begin van de code  rekening moeten houden met de volledige array. Vervolgens starten we met een eerste keer de functie heapify toe te passen op de array. Zoals eerder vermeldt starten we onderaan en werken we daarna onze weg naar boven. De onderste index wordt gegeven door $\frac{n}{2} -1$. 
+
+Vervolgens wisselen we het hoogste element, dat zich nu op index 0 bevindt, van plaats met het laatste element en verkleinen we de grootte van onze tree met 1. Dit doen we voor elk element van de array.
+
+### 2.3 print array
+
+Nu we onze array gesorteerd hebben, kunnen we deze vol trots presenteren aan de gebruiker. Ook hiervoor is het handig om een kleine functie te schrijven: 
+
+```C#
+    static void PrintArray(int[] arr)
+    {
+        foreach (int i in arr)
+        {
+            Console.Write(i + " ");
+        }
+        Console.WriteLine();
+    }
+```
+
+Hoewel het in Dodona niet strikt noodzakelijk is om dit te doen, vermeld ik deze toch snel even voor de enthousiastelingen die graag eigen code schrijven ;)
