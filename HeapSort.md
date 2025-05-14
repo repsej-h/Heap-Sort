@@ -46,8 +46,58 @@ Nu we weten dat het laatste element al op zijn correcte plaats staat, kunnen we 
 
 ## 2. implementatie van het Heap Sort algoritme
 
-Goed allemaal heel leuk zo'n theoritisch voorbeeld, maar wat ben je er mee als je het niet kan omzetten naar code en dus in de praktische wereld kan toepassen? Inderdaad, niets... 
+Goed allemaal heel leuk zo'n theoritische uitwerking, maar wat ben je er mee als je het niet kan omzetten naar code en dus in de praktische wereld kan toepassen? Inderdaad, niets... 
 
+De code voor de implementatie van dit algoritme bestaat uit enkele functies, ofja methoden, gezien we in C# bezig zijn.
 
+> functies in programmeren zijn herbruikbare blokken code die een specifieke taak uitvoeren, waardoor je code overzichtelijker wordt en je dezelfde code niet steeds opnieuw hoeft te schrijven. Je kunt een functie zien als een klein programmaatje binnen je grotere programma dat je kunt aanroepen wanneer je de bijbehorende taak wilt uitvoeren.
+
+### 2.1 heapify
+
+De belangerijkste functie binnen onze code is de functie `static void Heapify()`. De code hiervoor ziet er als volgt uit: 
+
+```C#
+ static void Heapify(int[] arr, int n, int i)
+    {
+        int largest = i; // Initialize largest as root
+        int left = 2 * i + 1; // left = 2*i + 1
+        int right = 2 * i + 2; // right = 2*i + 2
+
+        // If left child is larger than root
+        if (left < n && arr[left] > arr[largest])
+            largest = left;
+
+        // If right child is larger than largest so far
+        if (right < n && arr[right] > arr[largest])
+            largest = right;
+
+        // If largest is not root
+        if (largest != i)
+        {
+            // Swap arr[i] and arr[largest]
+            int swap = arr[i];
+            arr[i] = arr[largest];
+            arr[largest] = swap;
+
+            // Recursively heapify the affected sub-tree.  This is important
+            // to ensure the max-heap property is maintained after the swap.
+            Heapify(arr, n, largest);
+        }
+    }
+```
+
+Gezien we met deze functie onze input array kunnen omvormen tot de max heap binary tree, is het relatieve belangrijk dat we goed begrijpen hoe deze functie werkt.
+
+We kunnen zien dat deze functie enkele parameters verwacht. 
+
+> Parameters van functies zijn als de ingrediënten die je aan een functie meegeeft, zodat de functie weet met welke gegevens hij zijn taak moet uitvoeren. Ze zijn als invoerwaarden die je tussen de haakjes plaatst bij de definitie van de functie en die de functie gebruikt om zijn werk te doen.
+
+Ten eerste verwacht de functie een array, dit is vanzelfsspreken onze niet gesorteerde input. Ten tweede moeten we de grootte van onze tree meegeven. Waarom leidden we deze niet gewoon af uit de lengte van de input array? Zoals je je hopelijk nog herinnert wordt doorheen het uitvoeren van het programma waarden die op de correcte plaats staan 'genegeerd'. Dit kunnen we doen aan de hand van deze parameter. Ten slotte geven we mee welke index uit de tree we willen heapify'en. 
+
+Het eerste wat binnen de functie gebeurt is het initialiseren van enkele variablen. We gaan er even van uit dat onze parent knoop, ookwel *root* genoemt, de grootste waarde heeft. Of dit effectief zo is controleren we op een later punt in de functie. Vervolgens gaan we bepalen welke indexen de childeren knopen van de parent knoopt hebben. Wie goed heeft opgelet weet nog dat we deze kunnen bepalen aan de hand van $2i ± 1$.
+
+Ziezo, het moelijkste binnen deze functie zit er op. Wat ons nu rest is controleren of de childeren knopen groter zijn dan hun parent, en deze van plaats wisselen als dit het geval is. Het enig wat nog rest is om de functie recursief aan te roepen, wat wil zeggen dat we de functie zichzelf aanroept binnen de code van de functie. Dit doen we om ervoor te zorgen dat alle elementen binnen de sub tree, het gedeelde onder de gewijzigde vertakking, ook nog steeds correct gesorteerd blijft.
+
+### 2.2
 
 
