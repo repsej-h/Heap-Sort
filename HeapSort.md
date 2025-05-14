@@ -149,4 +149,50 @@ Nu we onze array gesorteerd hebben, kunnen we deze vol trots presenteren aan de 
     }
 ```
 
-Hoewel het in Dodona niet strikt noodzakelijk is om dit te doen, vermeld ik deze toch snel even voor de enthousiastelingen die graag eigen code schrijven ;)
+Hoewel het in Dodona strikt genomen niet noodzakelijk is om dit te doen, vermeld ik deze toch snel even voor de enthousiastelingen die graag eigen code schrijven ;)
+
+### 2.4 main functie
+
+Nu rest ons enkel nog de `public static void Main()`:
+
+```C#
+    public static void Main(string[] args)
+    {
+        // Example array to be sorted
+        int[] arr = { 12, 11, 13, 5, 6, 7 };
+        int n = arr.Length;
+
+        // Print the original array
+        Console.WriteLine("Original array:");
+        PrintArray(arr);
+
+        // Call the HeapSort.Sort function to sort the array
+        Sort(arr);
+
+        // Print the sorted array
+        Console.WriteLine("\nSorted array:");
+        PrintArray(arr);
+    }
+```
+
+Dit stukje code bevat simpelweg de array die moet worden gesorteerd en roept de sorteer en print functies aan.
+
+## 3. Nuttige info
+
+Nu we weten hoe we een array kunnen sorteren aan de hand van het heap sort algoritme, vraag je je misschien af waarom we juist heap sort *willen* gebruiken. 
+
+### voordelen
+
+Om te beginnen heeft heap sort een uiterest minimaal geheugen gebruik. Wanneer we de variabelen om data tijdelijk in te stockeren buiten beschouwing laten, is geen extra geheugen vereist. Note: dit is het geval wanneer we een interatieve in de plaats van een recursieve `heapify()` functie gebruiken.
+
+Bovendien heeft het heap sort algoritme een zeer voorspelbare tijd nodig om een array te sorteren. Deze is namelijk altijd $n\log{n}$ met $n$ de hoogte, aantal niveau's, van de binary tree. Dit wil dus zeggen dat de tijd die nodig is om de array in het beste geval te sorteren gelijk is aan de tijd die nodig is voor het slechtste geval. Dit terwijl dit voor andere sorteer algoritmes veel uiteen kan lopen.
+
+Hieruit volgt dat heap sort goed kan worden ingezet wanneer men met grootte datasets werkt.
+
+### nadelen
+
+Tegenover deze voordelen staan natuurlijk ook enkele nadelen. 
+
+Zo zorgt het minimale geheugen gebruik ervoor dat heap sort een *unstable* sorteeralgoritme is, en dus de respectievelijk volgorde van identieke elementen onderling mogelijks niet wordt bewaard.
+
+Ten slotte zorgt de zeer voorspelbare tijd er wel voor dat het algoritme relatief inefficient is en kostelijk naar energieverbruik toe, aangezien elk element van de binary tree moet worden vergeleken.
