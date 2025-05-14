@@ -14,15 +14,17 @@ Eerst en vooral moeten we onze input array visualiseren als een complete binary 
 
 Dit voor een array met grootte n, krijgt de bovenste knoop steeds waarde nul. De linker onderstaande knoop *(child)* zal dan steeds de waarde $2i+1$ krijgen, en de rechter $2i+2$ met $i$ de waarde van de bovenstaande **(parent)* knoop
 
-![Visualize-the-array-as-a-complete-binary-tree.webp](/Users/jesper/Downloads/Visualize-the-array-as-a-complete-binary-tree.webp)
+![Visualize-the-array-as-a-complete-binary-tree.webp](https://media.geeksforgeeks.org/wp-content/uploads/20240928160744/Visualize-the-array-as-a-complete-binary-tree.webp)
 
 ### stap 2: bouw een maximale heap
 
 Vervolgens zullen we ons zo pas gevormde tree gaan aanpassen. Concreet willen we ervoor zorgen dat het grootste element in onze tree helemaal bovenaan komt de staan. Dit kunnen we doen door per niveau te gaan vergelijken. We zullen steeds de waarden van de parent en children knopen gaan vergelijken. Indien de een child groter zou zijn dan zijn parent, worden beiden van plaats gewisseld. Wanneer we op het onderste niveau beginnen toepassen en we zo ons weg naar boven werken, eindigen we met een gesorteerde tree. 
 
-![](/Users/jesper/Library/Application%20Support/marktext/images/2025-05-13-22-25-31-image.png)
+<img width="713" alt="image" src="https://github.com/user-attachments/assets/8112fef7-6abe-4039-8c98-8c3a6d9dca0e" />
 
-![](/Users/jesper/Library/Application%20Support/marktext/images/2025-05-13-22-25-54-image.png)
+
+<img width="713" alt="image" src="https://github.com/user-attachments/assets/26d7ebda-53f1-4109-824d-b2f7b4898c0b" />
+
 
 
 
@@ -30,7 +32,7 @@ Vervolgens zullen we ons zo pas gevormde tree gaan aanpassen. Concreet willen we
 
 Nu we onze heapified binary tree hebben, kunnen we beginnen met het sorteren van onze array. Dit doen we door het grootste element, dat nu op plaats 0 in onze array staat, te verwisselen met het laatste element uit de array. Nu weten we dat dit element op zijn correcte plaats staat. 
 
-![](/Users/jesper/Library/Application%20Support/marktext/images/2025-05-13-22-28-59-image.png)
+<img width="705" alt="image" src="https://github.com/user-attachments/assets/6ff333c4-ebde-402e-82bb-cfaec0660219" />
 
 ### stap 4: repeat, repeat, repeat
 
@@ -38,9 +40,12 @@ Nu we weten dat het laatste element al op zijn correcte plaats staat, kunnen we 
 
 
 
-![](/Users/jesper/Library/Application%20Support/marktext/images/2025-05-13-22-33-08-image.png)
+<img width="698" alt="image" src="https://github.com/user-attachments/assets/c5104b86-80b9-46f8-8912-057c9f414208" />
 
-![](/Users/jesper/Library/Application%20Support/marktext/images/2025-05-13-22-33-30-image.png)
+
+
+<img width="709" alt="image" src="https://github.com/user-attachments/assets/524b9f41-7977-4f2c-a436-13f16799f987" />
+
 
 
 
