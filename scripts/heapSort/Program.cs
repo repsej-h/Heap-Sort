@@ -3,7 +3,7 @@
 public class HeapSort
 {
     // Function to perform heap sort on an integer array.
-    public static void Sort(int[] arr)
+    public static int[] Sort(int[] arr)
     {
         int n = arr.Length;
 
@@ -25,6 +25,7 @@ public class HeapSort
             //  to maintain the max heap property.
             Heapify(arr, i, 0);
         }
+        return arr;
     }
 
     // Recursive function to heapify a subtree rooted at index i in the array arr.
